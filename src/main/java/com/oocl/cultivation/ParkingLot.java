@@ -1,25 +1,25 @@
 package com.oocl.cultivation;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class ParkingLot {
     private final Map<CarTicket, Car> parkingRoom = new HashMap<>();
-    private final Set<CarTicket> carTicketRecords = new HashSet<>();
+    private final int THE_CAPACITY_OF_PARKING_ROOM = 10;
 
     public CarTicket park(Car car) {
+        if(parkingRoom.size() >= THE_CAPACITY_OF_PARKING_ROOM || parkingRoom.values().contains(car)){
+            return null;
+        }
         CarTicket carTicket = new CarTicket();
         parkingRoom.put(carTicket, car);
         return carTicket;
     }
 
     public Car fetch(CarTicket ticket) {
-        if(carTicketRecords.contains(ticket)){
+        if(parkingRoom.get(ticket) == null){
             return null;
         }
-        carTicketRecords.add(ticket);
-        return parkingRoom.get(ticket);
+        return parkingRoom.remove(ticket);
     }
 }
