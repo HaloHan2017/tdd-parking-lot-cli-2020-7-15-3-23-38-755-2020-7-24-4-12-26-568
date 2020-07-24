@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
     @Test
-    public void should_return_car_ticket_when_park_given_car() {
+    void should_return_car_ticket_when_park_given_car() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -20,7 +20,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_fetch_car_when_fetch_given_car_ticket() {
+    void should_return_fetch_car_when_fetch_given_car_ticket() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -33,7 +33,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_given_wrong_car_ticket() {
+    void should_return_null_when_fetch_given_wrong_car_ticket() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -46,7 +46,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_given_null_car_ticket() {
+    void should_return_null_when_fetch_given_null_car_ticket() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -58,7 +58,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_fetch_given_used_car_ticket() {
+    void should_return_null_when_fetch_given_used_car_ticket() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -71,10 +71,14 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_when_park_given_parking_room_is_full() {
+    void should_return_null_when_park_given_parking_room_is_full() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
+        for (int i = 0; i < 10; i++) {
+            Car tempCar = new Car();
+            parkingLot.park(tempCar);
+        }
         // when
         CarTicket carTicket = parkingLot.park(car);
         // then
