@@ -31,7 +31,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_get_unrecognized_parking_ticket_when_fetch_given_wrong_car_ticket() {
+    void should_get_exception_message_of_unrecognized_parking_ticket_when_fetch_given_wrong_car_ticket() {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -49,5 +49,24 @@ public class ParkingBoyTest {
         assertNull(fetchedCarByWrongCarTicket);
         assertNotEquals(carTicket, wrongCarTicket);
         assertEquals("Unrecognized parking ticket.",errorMsg);
+    }
+
+    @Test
+    void should_get_exception_message_of_please_provide_your_parking_ticket_when_fetch_given_wrong_car_ticket() {
+        // given
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.park(car);
+        // when
+        Car fetchedCarByNullCarTicket = null;
+        String errorMsg = "";
+        try {
+            fetchedCarByNullCarTicket = parkingBoy.fetch(null);
+        }catch (Exception e){
+            errorMsg = e.getMessage();
+        }
+        // then
+        assertNull(fetchedCarByNullCarTicket);
+        assertEquals("Please provide your parking ticket.",errorMsg);
     }
 }
