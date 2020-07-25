@@ -21,6 +21,19 @@ public class ParkingLotTest {
     }
 
     @Test
+    void should_return_null_when_park_given_repeat_car() throws CustomException {
+        // given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        // when
+        CarTicket ticketOnce = parkingLot.park(car);
+        CarTicket ticketTwice = parkingLot.park(car);
+        // then
+        assertNotNull(ticketOnce);
+        assertNull(ticketTwice);
+    }
+
+    @Test
     void should_return_fetch_car_when_fetch_given_car_ticket() throws CustomException {
         // given
         Car car = new Car();
