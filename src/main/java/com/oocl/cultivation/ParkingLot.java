@@ -14,6 +14,10 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
     public int getParkingRoomRemindCapacity() {
         return capacity - parkingRoom.size();
     }
