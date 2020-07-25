@@ -126,7 +126,7 @@ public class ParkingBoyTest {
         CarTicket ticket = smartParkingBoy.park(car);
         // then
         assertNotNull(ticket);
-        assertEquals(10, parkingLots.get(0).getParkingRoomRemindCapacity());
-        assertEquals(9, parkingLots.get(1).getParkingRoomRemindCapacity());
+        assertEquals(5, parkingLots.get(0).getParkingRoomRemindCapacity());
+        assertEquals(6, parkingLots.get(1).getParkingRoomRemindCapacity());
     }
 }
