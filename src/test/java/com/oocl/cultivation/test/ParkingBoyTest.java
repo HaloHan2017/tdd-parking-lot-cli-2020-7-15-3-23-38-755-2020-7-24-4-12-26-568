@@ -98,9 +98,9 @@ public class ParkingBoyTest {
         for (int i = 0; i < 2; i++) {
             parkingLots.add(new ParkingLot());
         }
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        NoSmartParkingBoy noSmartParkingBoy = new NoSmartParkingBoy(parkingLots);
         // when
-        CarTicket ticket = parkingBoy.park(car);
+        CarTicket ticket = noSmartParkingBoy.park(car);
         // then
         assertNotNull(ticket);
     }
