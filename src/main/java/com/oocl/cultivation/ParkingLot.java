@@ -7,8 +7,11 @@ public class ParkingLot {
     private final Map<CarTicket, Car> parkingRoom = new HashMap<>();
     private final int THE_CAPACITY_OF_PARKING_ROOM = 10;
 
-    public CarTicket park(Car car) {
-        if(parkingRoom.size() >= THE_CAPACITY_OF_PARKING_ROOM || parkingRoom.values().contains(car)){
+    public CarTicket park(Car car) throws CustomException {
+        if(parkingRoom.size() >= THE_CAPACITY_OF_PARKING_ROOM){
+            throw new CustomException("Not enough position.");
+        }
+        if(parkingRoom.values().contains(car)){
             return null;
         }
         CarTicket carTicket = new CarTicket();

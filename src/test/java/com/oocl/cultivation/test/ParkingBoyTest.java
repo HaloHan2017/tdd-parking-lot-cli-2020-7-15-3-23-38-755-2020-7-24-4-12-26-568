@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
     @Test
-    void should_return_car_ticket_when_park_given_car() {
+    void should_return_car_ticket_when_park_given_car() throws CustomException {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -31,7 +31,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_get_exception_message_of_unrecognized_parking_ticket_when_fetch_given_wrong_car_ticket() {
+    void should_get_exception_message_of_unrecognized_parking_ticket_when_fetch_given_wrong_car_ticket() throws CustomException {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -52,7 +52,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_get_exception_message_of_please_provide_your_parking_ticket_when_fetch_given_null_car_ticket() {
+    void should_get_exception_message_of_please_provide_your_parking_ticket_when_fetch_given_null_car_ticket() throws CustomException {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -69,13 +69,16 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_get_exception_message_of_not_enough_position_when_fetch_given_null_car_ticket() {
+    void should_get_exception_message_of_not_enough_position_when_park_given_car() {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         // when
         String errorMsg = "";
         try {
+            for (int i = 0; i < 10; i++) {
+                parkingBoy.park(new Car());
+            }
             parkingBoy.park(car);
         } catch (Exception e) {
             errorMsg = e.getMessage();

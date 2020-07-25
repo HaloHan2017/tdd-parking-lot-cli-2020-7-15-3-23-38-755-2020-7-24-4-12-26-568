@@ -9,7 +9,7 @@ public class ParkingBoy {
         this.parkingLot = new ParkingLot();
     }
 
-    public CarTicket park(Car car) {
+    public CarTicket park(Car car) throws CustomException {
         return parkingLot.park(car);
     }
 
