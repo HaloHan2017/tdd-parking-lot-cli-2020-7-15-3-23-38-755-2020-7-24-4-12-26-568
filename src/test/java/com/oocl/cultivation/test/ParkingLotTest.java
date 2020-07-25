@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
     @Test
-    void should_return_car_ticket_when_park_given_car() {
+    void should_return_car_ticket_when_park_given_car() throws CustomException {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -34,7 +34,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_get_error_msg_when_fetch_given_wrong_car_ticket() {
+    void should_get_error_msg_when_fetch_given_wrong_car_ticket() throws CustomException {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -48,11 +48,11 @@ public class ParkingLotTest {
             errorMsg = e.getMessage();
         }
         // then
-        assertEquals("Unrecognized parking ticket.",errorMsg);
+        assertEquals("Unrecognized parking ticket.", errorMsg);
     }
 
     @Test
-    void should_get_error_info_when_fetch_given_null_car_ticket() {
+    void should_get_error_info_when_fetch_given_null_car_ticket() throws CustomException {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -65,11 +65,11 @@ public class ParkingLotTest {
             errorMsg = e.getMessage();
         }
         // then
-        assertEquals("Unrecognized parking ticket.",errorMsg);
+        assertEquals("Unrecognized parking ticket.", errorMsg);
     }
 
     @Test
-    void should_get_error_info_when_fetch_given_used_car_ticket() {
+    void should_get_error_info_when_fetch_given_used_car_ticket() throws CustomException {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -83,7 +83,7 @@ public class ParkingLotTest {
             errorMsg = e.getMessage();
         }
         // then
-        assertEquals("Unrecognized parking ticket.",errorMsg);
+        assertEquals("Unrecognized parking ticket.", errorMsg);
     }
 
     @Test
@@ -91,13 +91,17 @@ public class ParkingLotTest {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        for (int i = 0; i < 10; i++) {
-            Car tempCar = new Car();
-            parkingLot.park(tempCar);
-        }
         // when
-        CarTicket carTicket = parkingLot.park(car);
+        String errorMsg = "";
+        try {
+            for (int i = 0; i < 10; i++) {
+                parkingLot.park(new Car());
+            }
+            parkingLot.park(car);
+        } catch (CustomException e) {
+            errorMsg = e.getMessage();
+        }
         // then
-        assertNull(carTicket);
+        assertEquals("Not enough position.", errorMsg);
     }
 }
