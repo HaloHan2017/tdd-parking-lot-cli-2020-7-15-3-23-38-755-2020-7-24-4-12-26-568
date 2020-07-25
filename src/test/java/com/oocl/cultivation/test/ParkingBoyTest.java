@@ -3,6 +3,9 @@ package com.oocl.cultivation.test;
 import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
@@ -91,7 +94,11 @@ public class ParkingBoyTest {
     void should_return_car_ticket_when_park_sequentially_given_car() throws CustomException {
         // given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            parkingLots.add(new ParkingLot());
+        }
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         // when
         CarTicket ticket = parkingBoy.park(car);
         // then
