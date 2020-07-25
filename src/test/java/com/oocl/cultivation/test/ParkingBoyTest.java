@@ -6,8 +6,7 @@ import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
     @Test
@@ -32,5 +31,26 @@ public class ParkingBoyTest {
         // then
         assertNotNull(fetchedCar);
         assertEquals(car, fetchedCar);
+    }
+
+    @Test
+    void should_return_error_info_when_fetch_given_wrong_car_ticket() {
+        // given
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        CarTicket carTicket = parkingBoy.park(car);
+        CarTicket wrongCarTicket = new CarTicket();
+        // when
+        Car fetchedCarByWrongCarTicket = null;
+        String errorInfo = "";
+        try {
+            fetchedCarByWrongCarTicket = parkingBoy.fetch(wrongCarTicket);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        // then
+        assertNull(fetchedCarByWrongCarTicket);
+        assertNotEquals(carTicket, wrongCarTicket);
+        assertEquals("Unrecognized parking ticket.",errorInfo);
     }
 }
