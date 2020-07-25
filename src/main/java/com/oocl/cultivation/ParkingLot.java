@@ -5,17 +5,24 @@ import java.util.Map;
 
 public class ParkingLot {
     private final Map<CarTicket, Car> parkingRoom = new HashMap<>();
-    private final int capacity = 10;
+    private int capacity = 10;
+
+    public ParkingLot() {
+    }
+
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+    }
 
     public int getParkingRoomRemindCapacity() {
         return capacity - parkingRoom.size();
     }
 
     public CarTicket park(Car car) throws CustomException {
-        if(parkingRoom.size() >= capacity){
+        if (parkingRoom.size() >= capacity) {
             throw new CustomException("Not enough position.");
         }
-        if(parkingRoom.values().contains(car)){
+        if (parkingRoom.values().contains(car)) {
             return null;
         }
         CarTicket carTicket = new CarTicket();
@@ -24,7 +31,7 @@ public class ParkingLot {
     }
 
     public Car fetch(CarTicket ticket) throws CustomException {
-        if(parkingRoom.get(ticket) == null){
+        if (parkingRoom.get(ticket) == null) {
             throw new CustomException("Unrecognized parking ticket.");
         }
         return parkingRoom.remove(ticket);
