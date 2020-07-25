@@ -5,10 +5,14 @@ import java.util.Map;
 
 public class ParkingLot {
     private final Map<CarTicket, Car> parkingRoom = new HashMap<>();
-    private final int THE_CAPACITY_OF_PARKING_ROOM = 10;
+    private final int capacity = 10;
+
+    public int getParkingRoomRemindCapacity() {
+        return capacity - parkingRoom.size();
+    }
 
     public CarTicket park(Car car) throws CustomException {
-        if(parkingRoom.size() >= THE_CAPACITY_OF_PARKING_ROOM){
+        if(parkingRoom.size() >= capacity){
             throw new CustomException("Not enough position.");
         }
         if(parkingRoom.values().contains(car)){
