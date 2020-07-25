@@ -31,7 +31,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_return_error_info_when_fetch_given_wrong_car_ticket() {
+    void should_get_unrecognized_parking_ticket_when_fetch_given_wrong_car_ticket() {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -39,15 +39,15 @@ public class ParkingBoyTest {
         CarTicket wrongCarTicket = new CarTicket();
         // when
         Car fetchedCarByWrongCarTicket = null;
-        String errorInfo = "";
+        String errorMsg = "";
         try {
             fetchedCarByWrongCarTicket = parkingBoy.fetch(wrongCarTicket);
         }catch (Exception e){
-            errorInfo = e.getMessage();
+            errorMsg = e.getMessage();
         }
         // then
         assertNull(fetchedCarByWrongCarTicket);
         assertNotEquals(carTicket, wrongCarTicket);
-        assertEquals("Unrecognized parking ticket.",errorInfo);
+        assertEquals("Unrecognized parking ticket.",errorMsg);
     }
 }
