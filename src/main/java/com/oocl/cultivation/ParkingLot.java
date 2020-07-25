@@ -16,9 +16,9 @@ public class ParkingLot {
         return carTicket;
     }
 
-    public Car fetch(CarTicket ticket) {
+    public Car fetch(CarTicket ticket) throws CustomException {
         if(parkingRoom.get(ticket) == null){
-            return null;
+            throw new CustomException("Unrecognized parking ticket.");
         }
         return parkingRoom.remove(ticket);
     }

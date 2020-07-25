@@ -1,9 +1,6 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.Car;
-import com.oocl.cultivation.CarTicket;
-import com.oocl.cultivation.ParkingBoy;
-import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +18,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_return_fetch_car_when_fetch_given_car_ticket() {
+    void should_return_fetch_car_when_fetch_given_car_ticket() throws CustomException {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -46,7 +43,7 @@ public class ParkingBoyTest {
         try {
             fetchedCarByWrongCarTicket = parkingBoy.fetch(wrongCarTicket);
         }catch (Exception e){
-            e.getMessage();
+            errorInfo = e.getMessage();
         }
         // then
         assertNull(fetchedCarByWrongCarTicket);
