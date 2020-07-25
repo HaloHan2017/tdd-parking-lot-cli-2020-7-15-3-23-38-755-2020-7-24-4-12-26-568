@@ -42,13 +42,13 @@ public class ParkingBoyTest {
         String errorMsg = "";
         try {
             fetchedCarByWrongCarTicket = parkingBoy.fetch(wrongCarTicket);
-        }catch (Exception e){
+        } catch (Exception e) {
             errorMsg = e.getMessage();
         }
         // then
         assertNull(fetchedCarByWrongCarTicket);
         assertNotEquals(carTicket, wrongCarTicket);
-        assertEquals("Unrecognized parking ticket.",errorMsg);
+        assertEquals("Unrecognized parking ticket.", errorMsg);
     }
 
     @Test
@@ -61,10 +61,26 @@ public class ParkingBoyTest {
         String errorMsg = "";
         try {
             parkingBoy.fetch(null);
-        }catch (Exception e){
+        } catch (Exception e) {
             errorMsg = e.getMessage();
         }
         // then
-        assertEquals("Please provide your parking ticket.",errorMsg);
+        assertEquals("Please provide your parking ticket.", errorMsg);
+    }
+
+    @Test
+    void should_get_exception_message_of_not_enough_position_when_fetch_given_null_car_ticket() {
+        // given
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        // when
+        String errorMsg = "";
+        try {
+            parkingBoy.park(car);
+        } catch (Exception e) {
+            errorMsg = e.getMessage();
+        }
+        // then
+        assertEquals("Not enough position.", errorMsg);
     }
 }
