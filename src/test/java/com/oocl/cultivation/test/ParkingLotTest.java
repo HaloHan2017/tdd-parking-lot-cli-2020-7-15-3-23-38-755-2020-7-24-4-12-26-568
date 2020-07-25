@@ -2,6 +2,7 @@ package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
+import com.oocl.cultivation.CustomException;
 import com.oocl.cultivation.ParkingLot;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_fetch_car_when_fetch_given_car_ticket() {
+    void should_return_fetch_car_when_fetch_given_car_ticket() throws CustomException {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -33,41 +34,56 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_fetch_given_wrong_car_ticket() {
+    void should_get_error_msg_when_fetch_given_wrong_car_ticket() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.park(car);
         CarTicket wrongTicket = new CarTicket();
         // when
-        Car fetchedCar = parkingLot.fetch(wrongTicket);
+        String errorMsg = "";
+        try {
+            parkingLot.fetch(wrongTicket);
+        } catch (CustomException e) {
+            errorMsg = e.getMessage();
+        }
         // then
-        assertNull(fetchedCar);
+        assertEquals("Unrecognized parking ticket.",errorMsg);
     }
 
     @Test
-    void should_return_null_when_fetch_given_null_car_ticket() {
+    void should_get_error_info_when_fetch_given_null_car_ticket() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.park(car);
         // when
-        Car fetchedCar = parkingLot.fetch(null);
+        String errorMsg = "";
+        try {
+            parkingLot.fetch(null);
+        } catch (CustomException e) {
+            errorMsg = e.getMessage();
+        }
         // then
-        assertNull(fetchedCar);
+        assertEquals("Unrecognized parking ticket.",errorMsg);
     }
 
     @Test
-    void should_return_null_when_fetch_given_used_car_ticket() {
+    void should_get_error_info_when_fetch_given_used_car_ticket() {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         CarTicket carTicket = parkingLot.park(car);
         // when
-        parkingLot.fetch(carTicket);
-        Car fetchedCarByUsedTicket = parkingLot.fetch(carTicket);
+        String errorMsg = "";
+        try {
+            parkingLot.fetch(carTicket);
+            parkingLot.fetch(carTicket);
+        } catch (CustomException e) {
+            errorMsg = e.getMessage();
+        }
         // then
-        assertNull(fetchedCarByUsedTicket);
+        assertEquals("Unrecognized parking ticket.",errorMsg);
     }
 
     @Test
