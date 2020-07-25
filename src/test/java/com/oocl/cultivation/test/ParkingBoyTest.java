@@ -86,4 +86,15 @@ public class ParkingBoyTest {
         // then
         assertEquals("Not enough position.", errorMsg);
     }
+
+    @Test
+    void should_return_car_ticket_when_park_sequentially_given_car() throws CustomException {
+        // given
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        // when
+        CarTicket ticket = parkingBoy.park(car);
+        // then
+        assertNotNull(ticket);
+    }
 }
