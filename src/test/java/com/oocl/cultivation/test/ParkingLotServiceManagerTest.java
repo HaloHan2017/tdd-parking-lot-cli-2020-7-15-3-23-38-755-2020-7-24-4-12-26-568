@@ -61,7 +61,7 @@ class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_car_ticket_when_assign_parking_boy_task_given_car() throws CustomException {
+    void should_return_error_msg_not_enough_position_when_assign_parking_boy_task_given_car() throws CustomException {
         // given
         UserServiceStrategy userServiceStrategy = new UserServiceStrategy();
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(userServiceStrategy);
@@ -75,7 +75,7 @@ class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_car_when_assign_parking_boy_task_given_car() throws CustomException {
+    void should_return_error_msg_unrecognized_parking_ticket_when_assign_parking_boy_task_given_car() throws CustomException {
         // given
         UserServiceStrategy userServiceStrategy = new UserServiceStrategy();
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(userServiceStrategy);
