@@ -20,4 +20,8 @@ public class ParkingLotServiceManager {
         parkingBoy.setParkingLot(parkingLot);
         parkingBoys.add(parkingBoy);
     }
+
+    public ParkingBoy specifyParkingBoy(ParkingLot parkingLot) {
+        return null;
+    }
 }

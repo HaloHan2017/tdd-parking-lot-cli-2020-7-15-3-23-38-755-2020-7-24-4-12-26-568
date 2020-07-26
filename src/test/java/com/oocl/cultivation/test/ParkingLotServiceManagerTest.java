@@ -1,10 +1,11 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.ParkingBoy;
+import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.ParkingLotServiceManager;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotServiceManagerTest {
     @Test
@@ -16,5 +17,17 @@ class ParkingLotServiceManagerTest {
         parkingLotServiceManager.appendParkingBoy(parkingBoy);
         // then
         assertEquals(parkingLotServiceManager.getParkingLot(), parkingBoy.getParkingLot());
+    }
+
+    @Test
+    void should_return_parking_boy_when_specify_parking_boy_given_parking_lot_service_manager() {
+        // given
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
+        ParkingLot parkingLot = parkingLotServiceManager.getParkingLot();
+        // when
+        ParkingBoy specifiedParkingBoy =parkingLotServiceManager.specifyParkingBoy(parkingLot);
+        // then
+        assertNotNull(specifiedParkingBoy);
+        assertEquals(parkingLot, specifiedParkingBoy.getParkingLot());
     }
 }
