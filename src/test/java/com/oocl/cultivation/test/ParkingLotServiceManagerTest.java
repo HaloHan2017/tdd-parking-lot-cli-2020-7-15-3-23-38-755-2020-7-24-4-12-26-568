@@ -65,12 +65,12 @@ class ParkingLotServiceManagerTest {
         // given
         UserServiceStrategy userServiceStrategy = new UserServiceStrategy();
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(userServiceStrategy);
-        Car car = new Car();
-        CarTicket carTicket = (CarTicket) parkingLotServiceManager.doService(car);
+        for (int i = 0; i < 10; i++) {
+            parkingLotServiceManager.doService(new Car());
+        }
         // when
-        Car fetchedCar = (Car) parkingLotServiceManager.doService(carTicket);
+        String errorMsg = (String) parkingLotServiceManager.doService(new Car());
         // then
-        assertNotNull(fetchedCar);
-        assertEquals(car, fetchedCar);
+        assertEquals("Not enough position.", errorMsg);
     }
 }
