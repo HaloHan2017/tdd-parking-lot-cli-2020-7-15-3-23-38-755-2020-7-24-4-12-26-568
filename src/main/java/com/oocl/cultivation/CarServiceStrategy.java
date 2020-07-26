@@ -6,15 +6,12 @@ public class CarServiceStrategy extends ParkingBoy implements IServiceStrategy {
         try {
             if (param instanceof Car) {
                 return park((Car) param);
+            } else if (param instanceof CarTicket) {
+                return fetch((CarTicket) param);
             }
             return null;
         } catch (CustomException e) {
             return e.getMessage();
         }
-    }
-
-    @Override
-    public CarTicket park(Car car) throws CustomException {
-        return super.park(car);
     }
 }
