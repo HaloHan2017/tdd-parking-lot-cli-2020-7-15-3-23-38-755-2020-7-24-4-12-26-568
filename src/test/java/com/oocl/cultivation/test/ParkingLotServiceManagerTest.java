@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ParkingLotServiceManagerTest {
     @Test
-    void should_return_void_when_append_parking_boy_given_parking_boy() {
+    void should_return_void_when_append_parking_boy_given_parking_boy() throws CustomException {
         // given
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingBoyServiceStrategy parkingBoyServiceStrategy = new ParkingBoyServiceStrategy();
@@ -20,7 +20,7 @@ class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_parking_boy_when_specify_parking_boy_given_parking_lot_service_manager() {
+    void should_return_parking_boy_when_specify_parking_boy_given_parking_lot_service_manager() throws CustomException {
         // given
         ParkingBoyServiceStrategy parkingBoyServiceStrategy = new ParkingBoyServiceStrategy();
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoyServiceStrategy);
@@ -35,7 +35,7 @@ class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_car_ticket_when_park_given_car() {
+    void should_return_car_ticket_when_park_given_car() throws CustomException {
         // given
         CarServiceStrategy carServiceStrategy = new CarServiceStrategy();
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(carServiceStrategy);
@@ -47,7 +47,7 @@ class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_car_when_fetch_given_car_ticket() {
+    void should_return_car_when_fetch_given_car_ticket() throws CustomException {
         // given
         CarServiceStrategy carServiceStrategy = new CarServiceStrategy();
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(carServiceStrategy);

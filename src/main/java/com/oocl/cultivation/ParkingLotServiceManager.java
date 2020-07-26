@@ -7,7 +7,7 @@ public class ParkingLotServiceManager {
         this.serviceStrategy = serviceStrategy;
     }
 
-    public Object doService(Object param) {
+    public Object doService(Object param) throws CustomException {
         return serviceStrategy.doService(param);
     }
 }
