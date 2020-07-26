@@ -23,11 +23,10 @@ class ParkingLotServiceManagerTest {
     void should_return_parking_boy_when_specify_parking_boy_given_parking_lot_service_manager() {
         // given
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
-        ParkingLot parkingLot = parkingLotServiceManager.getParkingLot();
         // when
-        ParkingBoy specifiedParkingBoy =parkingLotServiceManager.specifyParkingBoy(parkingLot);
+        ParkingBoy specifiedParkingBoy =parkingLotServiceManager.specifyParkingBoy();
         // then
         assertNotNull(specifiedParkingBoy);
-        assertEquals(parkingLot, specifiedParkingBoy.getParkingLot());
+        assertEquals(parkingLotServiceManager.getParkingLot(), specifiedParkingBoy.getParkingLot());
     }
 }

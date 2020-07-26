@@ -21,7 +21,7 @@ public class ParkingLotServiceManager {
         parkingBoys.add(parkingBoy);
     }
 
-    public ParkingBoy specifyParkingBoy(ParkingLot parkingLot) {
+    public ParkingBoy specifyParkingBoy() {
         return null;
     }
 }
