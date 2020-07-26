@@ -73,4 +73,17 @@ class ParkingLotServiceManagerTest {
         // then
         assertEquals("Not enough position.", errorMsg);
     }
+
+    @Test
+    void should_return_car_when_assign_parking_boy_task_given_car() throws CustomException {
+        // given
+        UserServiceStrategy userServiceStrategy = new UserServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(userServiceStrategy);
+        CarTicket carTicket = (CarTicket) parkingLotServiceManager.doService(new Car());
+        CarTicket wrongCarTicket = new CarTicket();
+        // when
+        String errorMsg = (String) parkingLotServiceManager.doService(wrongCarTicket);
+        // then
+        assertEquals("Unrecognized parking ticket.", errorMsg);
+    }
 }
