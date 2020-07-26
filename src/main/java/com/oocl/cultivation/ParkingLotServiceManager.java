@@ -17,5 +17,7 @@ public class ParkingLotServiceManager {
     }
 
     public void appendParkingBoy(ParkingBoy parkingBoy) {
+        parkingBoy.setParkingLot(parkingLot);
+        parkingBoys.add(parkingBoy);
     }
 }

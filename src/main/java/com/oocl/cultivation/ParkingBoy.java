@@ -17,6 +17,10 @@ public class ParkingBoy {
         return parkingLot;
     }
 
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+
     public Car fetch(CarTicket ticket) throws CustomException {
         if(Objects.isNull(ticket)){
             throw new CustomException("Please provide your parking ticket.");
