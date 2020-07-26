@@ -1,6 +1,7 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.ParkingBoy;
+import com.oocl.cultivation.ParkingBoyServiceStrategy;
 import com.oocl.cultivation.ParkingLotServiceManager;
 import org.junit.jupiter.api.Test;
 
@@ -12,24 +13,26 @@ class ParkingLotServiceManagerTest {
     void should_return_void_when_append_parking_boy_given_parking_boy() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy();
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
+        ParkingBoyServiceStrategy parkingBoyServiceStrategy = new ParkingBoyServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoyServiceStrategy);
         // when
-        parkingLotServiceManager.appendParkingBoy(parkingBoy);
+        parkingLotServiceManager.doService(parkingBoy);
         // then
-        assertEquals(parkingLotServiceManager.getParkingLot(), parkingBoy.getParkingLot());
+        assertEquals(parkingBoyServiceStrategy.getParkingLot(), parkingBoy.getParkingLot());
     }
 
     @Test
     void should_return_parking_boy_when_specify_parking_boy_given_parking_lot_service_manager() {
         // given
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager();
+        ParkingBoyServiceStrategy parkingBoyServiceStrategy = new ParkingBoyServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoyServiceStrategy);
         ParkingBoy parkingBoy = new ParkingBoy();
-        parkingLotServiceManager.appendParkingBoy(parkingBoy);
+        parkingLotServiceManager.doService(parkingBoy);
         // when
-        ParkingBoy specifiedParkingBoy = parkingLotServiceManager.specifyParkingBoy();
+        ParkingBoy specifiedParkingBoy = (ParkingBoy) parkingLotServiceManager.doService(null);
         // then
         assertNotNull(specifiedParkingBoy);
         assertEquals(parkingBoy, specifiedParkingBoy);
-        assertEquals(parkingLotServiceManager.getParkingLot(), specifiedParkingBoy.getParkingLot());
+        assertEquals(parkingBoyServiceStrategy.getParkingLot(), specifiedParkingBoy.getParkingLot());
     }
 }
