@@ -13,6 +13,10 @@ public class ParkingBoy {
         return parkingLot.park(car);
     }
 
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
     public Car fetch(CarTicket ticket) throws CustomException {
         if(Objects.isNull(ticket)){
             throw new CustomException("Please provide your parking ticket.");
