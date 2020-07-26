@@ -3,7 +3,14 @@ package com.oocl.cultivation;
 public class CarServiceStrategy extends ParkingBoy implements IServiceStrategy {
     @Override
     public Object doService(Object param) {
-        return null;
+        try {
+            if (param instanceof Car) {
+                return park((Car) param);
+            }
+            return null;
+        } catch (CustomException e) {
+            return e.getMessage();
+        }
     }
 
     @Override
