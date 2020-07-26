@@ -1,8 +1,6 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.ParkingBoy;
-import com.oocl.cultivation.ParkingBoyServiceStrategy;
-import com.oocl.cultivation.ParkingLotServiceManager;
+import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,5 +32,17 @@ class ParkingLotServiceManagerTest {
         assertNotNull(specifiedParkingBoy);
         assertEquals(parkingBoy, specifiedParkingBoy);
         assertEquals(parkingBoyServiceStrategy.getParkingLot(), specifiedParkingBoy.getParkingLot());
+    }
+
+    @Test
+    void should_return_car_ticket_when_park_given_car() {
+        // given
+        CarServiceStrategy carServiceStrategy = new CarServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(carServiceStrategy);
+        Car car = new Car();
+        // when
+        CarTicket carTicket = (CarTicket) parkingLotServiceManager.doService(car);
+        // then
+        assertNotNull(carTicket);
     }
 }
