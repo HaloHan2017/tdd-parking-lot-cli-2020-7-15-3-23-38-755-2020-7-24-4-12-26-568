@@ -59,4 +59,18 @@ class ParkingLotServiceManagerTest {
         assertNotNull(fetchedCar);
         assertEquals(car, fetchedCar);
     }
+
+    @Test
+    void should_return_car_ticket_when_assign_parking_boy_task_given_car() throws CustomException {
+        // given
+        UserServiceStrategy userServiceStrategy = new UserServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(userServiceStrategy);
+        Car car = new Car();
+        CarTicket carTicket = (CarTicket) parkingLotServiceManager.doService(car);
+        // when
+        Car fetchedCar = (Car) parkingLotServiceManager.doService(carTicket);
+        // then
+        assertNotNull(fetchedCar);
+        assertEquals(car, fetchedCar);
+    }
 }
