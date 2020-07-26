@@ -45,4 +45,18 @@ class ParkingLotServiceManagerTest {
         // then
         assertNotNull(carTicket);
     }
+
+    @Test
+    void should_return_car_when_fetch_given_car_ticket() {
+        // given
+        CarServiceStrategy carServiceStrategy = new CarServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(carServiceStrategy);
+        Car car = new Car();
+        CarTicket carTicket = (CarTicket) parkingLotServiceManager.doService(car);
+        // when
+        Car fetchedCar = (Car) parkingLotServiceManager.doService(carTicket);
+        // then
+        assertNotNull(fetchedCar);
+        assertEquals(car, fetchedCar);
+    }
 }
