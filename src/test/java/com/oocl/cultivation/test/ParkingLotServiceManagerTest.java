@@ -63,8 +63,8 @@ class ParkingLotServiceManagerTest {
     @Test
     void should_return_error_msg_not_enough_position_when_assign_parking_boy_task_given_car() throws CustomException {
         // given
-        UserServiceStrategy userServiceStrategy = new UserServiceStrategy();
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(userServiceStrategy);
+        CarServiceStrategy carServiceStrategy = new CarServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(carServiceStrategy);
         for (int i = 0; i < 10; i++) {
             parkingLotServiceManager.doService(new Car());
         }
@@ -77,8 +77,8 @@ class ParkingLotServiceManagerTest {
     @Test
     void should_return_error_msg_unrecognized_parking_ticket_when_assign_parking_boy_task_given_car() throws CustomException {
         // given
-        UserServiceStrategy userServiceStrategy = new UserServiceStrategy();
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(userServiceStrategy);
+        CarServiceStrategy carServiceStrategy = new CarServiceStrategy();
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(carServiceStrategy);
         CarTicket carTicket = (CarTicket) parkingLotServiceManager.doService(new Car());
         CarTicket wrongCarTicket = new CarTicket();
         // when
