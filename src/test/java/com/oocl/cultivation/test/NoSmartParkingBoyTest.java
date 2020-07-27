@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class NoSmartParkingBoyTest {
 
@@ -38,17 +37,14 @@ class NoSmartParkingBoyTest {
         }
         ParkingBoy noSmartParkingBoy = new NoSmartParkingBoy(parkingLots);
         // when
-        String errorMsg = "";
-        try {
+        Throwable exception = assertThrows(CustomException.class, () -> {
             for (int i = 0; i < 10; i++) {
                 parkingLots.get(0).park(new Car());
                 parkingLots.get(1).park(new Car());
             }
             noSmartParkingBoy.park(car);
-        } catch (Exception e) {
-            errorMsg = e.getMessage();
-        }
+        });
         // then
-        assertEquals("Not enough position.", errorMsg);
+        assertEquals("Not enough position.", exception.getMessage());
     }
 }
