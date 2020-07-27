@@ -3,8 +3,8 @@ package com.oocl.cultivation.test;
 import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ParkingLotServiceManagerTest {
     @Test
@@ -65,13 +65,15 @@ class ParkingLotServiceManagerTest {
         // given
         CarServiceStrategy carServiceStrategy = new CarServiceStrategy();
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(carServiceStrategy);
+        // when
         for (int i = 0; i < 10; i++) {
             parkingLotServiceManager.doService(new Car());
         }
-        // when
-        String errorMsg = (String) parkingLotServiceManager.doService(new Car());
+        Throwable exception = assertThrows(CustomException.class, () -> {
+            parkingLotServiceManager.doService(new Car());
+        });
         // then
-        assertEquals("Not enough position.", errorMsg);
+        assertEquals("Not enough position.", exception.getMessage());
     }
 
     @Test
@@ -82,8 +84,11 @@ class ParkingLotServiceManagerTest {
         CarTicket carTicket = (CarTicket) parkingLotServiceManager.doService(new Car());
         CarTicket wrongCarTicket = new CarTicket();
         // when
-        String errorMsg = (String) parkingLotServiceManager.doService(wrongCarTicket);
+        Throwable exception = assertThrows(CustomException.class, () -> {
+            parkingLotServiceManager.doService(wrongCarTicket);
+        });
         // then
-        assertEquals("Unrecognized parking ticket.", errorMsg);
+        assertNotEquals(wrongCarTicket, carTicket);
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 }
