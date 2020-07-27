@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ParkingBoyTest {
+class ParkingBoyTest {
     @Test
     void should_return_car_ticket_when_park_given_car() throws CustomException {
         // given

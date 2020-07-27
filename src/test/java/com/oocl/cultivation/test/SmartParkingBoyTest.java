@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class SmartParkingBoyTest {
+class SmartParkingBoyTest {
 
     @Test
     void should_return_car_ticket_when_park_smartly_given_car() throws CustomException {
