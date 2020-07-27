@@ -6,6 +6,8 @@ import com.oocl.cultivation.CustomException;
 import com.oocl.cultivation.ParkingBoy;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
@@ -41,17 +43,13 @@ class ParkingBoyTest {
         CarTicket carTicket = parkingBoy.park(car);
         CarTicket wrongCarTicket = new CarTicket();
         // when
-        Car fetchedCarByWrongCarTicket = null;
-        String errorMsg = "";
-        try {
-            fetchedCarByWrongCarTicket = parkingBoy.fetch(wrongCarTicket);
-        } catch (Exception e) {
-            errorMsg = e.getMessage();
-        }
-        // then
-        assertNull(fetchedCarByWrongCarTicket);
+        AtomicReference<Car> fetchedCarAtomicReference = new AtomicReference<>();
+        Throwable exception = assertThrows(CustomException.class, () -> {
+            fetchedCarAtomicReference.set(parkingBoy.fetch(wrongCarTicket));
+        });
+        assertNull(fetchedCarAtomicReference.get());
         assertNotEquals(carTicket, wrongCarTicket);
-        assertEquals("Unrecognized parking ticket.", errorMsg);
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
     @Test
@@ -61,14 +59,10 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         parkingBoy.park(car);
         // when
-        String errorMsg = "";
-        try {
+        Throwable exception = assertThrows(CustomException.class, () -> {
             parkingBoy.fetch(null);
-        } catch (Exception e) {
-            errorMsg = e.getMessage();
-        }
-        // then
-        assertEquals("Please provide your parking ticket.", errorMsg);
+        });
+        assertEquals("Please provide your parking ticket.", exception.getMessage());
     }
 
     @Test
@@ -77,16 +71,13 @@ class ParkingBoyTest {
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         // when
-        String errorMsg = "";
-        try {
+        Throwable exception = assertThrows(CustomException.class, () -> {
             for (int i = 0; i < 10; i++) {
                 parkingBoy.park(new Car());
             }
             parkingBoy.park(car);
-        } catch (Exception e) {
-            errorMsg = e.getMessage();
-        }
+        });
         // then
-        assertEquals("Not enough position.", errorMsg);
+        assertEquals("Not enough position.", exception.getMessage());
     }
 }
