@@ -54,14 +54,11 @@ class ParkingLotTest {
         parkingLot.park(car);
         CarTicket wrongTicket = new CarTicket();
         // when
-        String errorMsg = "";
-        try {
+        Throwable exception = assertThrows(CustomException.class, () -> {
             parkingLot.fetch(wrongTicket);
-        } catch (CustomException e) {
-            errorMsg = e.getMessage();
-        }
+        });
         // then
-        assertEquals("Unrecognized parking ticket.", errorMsg);
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
     @Test
@@ -71,14 +68,11 @@ class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.park(car);
         // when
-        String errorMsg = "";
-        try {
+        Throwable exception = assertThrows(CustomException.class, () -> {
             parkingLot.fetch(null);
-        } catch (CustomException e) {
-            errorMsg = e.getMessage();
-        }
+        });
         // then
-        assertEquals("Unrecognized parking ticket.", errorMsg);
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
     @Test
@@ -88,15 +82,12 @@ class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         CarTicket carTicket = parkingLot.park(car);
         // when
-        String errorMsg = "";
-        try {
+        Throwable exception = assertThrows(CustomException.class, () -> {
             parkingLot.fetch(carTicket);
             parkingLot.fetch(carTicket);
-        } catch (CustomException e) {
-            errorMsg = e.getMessage();
-        }
+        });
         // then
-        assertEquals("Unrecognized parking ticket.", errorMsg);
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
     @Test
@@ -105,16 +96,13 @@ class ParkingLotTest {
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         // when
-        String errorMsg = "";
-        try {
+        Throwable exception = assertThrows(CustomException.class, () -> {
             for (int i = 0; i < 10; i++) {
                 parkingLot.park(new Car());
             }
             parkingLot.park(car);
-        } catch (CustomException e) {
-            errorMsg = e.getMessage();
-        }
+        });
         // then
-        assertEquals("Not enough position.", errorMsg);
+        assertEquals("Not enough position.", exception.getMessage());
     }
 }
