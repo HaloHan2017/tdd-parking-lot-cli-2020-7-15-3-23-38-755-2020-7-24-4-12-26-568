@@ -30,7 +30,7 @@ public class ParkingLot {
         if (parkingRoom.size() >= capacity) {
             throw new CustomException("Not enough position.");
         }
-        if (parkingRoom.values().contains(car)) {
+        if (parkingRoom.containsValue(car)) {
             return null;
         }
         CarTicket carTicket = new CarTicket();

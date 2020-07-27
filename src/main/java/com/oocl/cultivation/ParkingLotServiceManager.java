@@ -1,7 +1,7 @@
 package com.oocl.cultivation;
 
 public class ParkingLotServiceManager {
-    private IServiceStrategy serviceStrategy;
+    private final IServiceStrategy serviceStrategy;
 
     public ParkingLotServiceManager(IServiceStrategy serviceStrategy) {
         this.serviceStrategy = serviceStrategy;

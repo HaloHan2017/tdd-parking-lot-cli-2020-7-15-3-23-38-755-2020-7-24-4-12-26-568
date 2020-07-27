@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class ParkingBoyServiceStrategy implements IServiceStrategy {
-    private ParkingLot parkingLot;
-    private List<ParkingBoy> parkingBoys;
+    private final ParkingLot parkingLot;
+    private final List<ParkingBoy> parkingBoys;
 
     public ParkingBoyServiceStrategy() {
         parkingLot = new ParkingLot();

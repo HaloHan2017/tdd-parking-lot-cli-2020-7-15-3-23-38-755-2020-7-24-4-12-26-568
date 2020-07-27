@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class SuperSmartParkingBoy extends ParkingBoy {
-    private List<ParkingLot> parkingLots;
+    private final List<ParkingLot> parkingLots;
 
     public SuperSmartParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
