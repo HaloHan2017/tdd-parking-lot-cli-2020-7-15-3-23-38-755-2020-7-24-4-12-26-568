@@ -80,3 +80,9 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
  gradle/wrapper/gradle-wrapper.properties
+ .iml
+ .ipl
+/parking-lot.iml
+/parking-lot.ipr
+/parking-lot.main.iml
+/parking-lot.test.iml
