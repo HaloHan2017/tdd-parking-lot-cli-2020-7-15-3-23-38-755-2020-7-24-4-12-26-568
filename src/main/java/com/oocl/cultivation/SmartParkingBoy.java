@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class SmartParkingBoy extends ParkingBoy {
     private List<ParkingLot> parkingLots;
@@ -12,7 +13,7 @@ public class SmartParkingBoy extends ParkingBoy {
 
     @Override
     public CarTicket park(Car car) throws CustomException {
-        ParkingLot parkingLot = parkingLots.stream().max(Comparator.comparingDouble(ParkingLot::getParkingRoomRemindCapacity)).orElse(null);
-        return parkingLot.park(car);
+        Optional<ParkingLot> parkingLotOptional = parkingLots.stream().max(Comparator.comparingDouble(ParkingLot::getParkingRoomRemindCapacity));
+        return parkingLotOptional.isPresent() ? parkingLotOptional.get().park(car) : null;
     }
 }
