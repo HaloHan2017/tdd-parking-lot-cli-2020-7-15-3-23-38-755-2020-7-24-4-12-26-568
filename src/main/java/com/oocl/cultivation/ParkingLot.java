@@ -22,6 +22,10 @@ public class ParkingLot {
         return capacity - parkingRoom.size();
     }
 
+    public Double getMaximumUtilization() {
+        return (double) getParkingRoomRemindCapacity() / (double) getCapacity();
+    }
+
     public CarTicket park(Car car) throws CustomException {
         if (parkingRoom.size() >= capacity) {
             throw new CustomException("Not enough position.");
