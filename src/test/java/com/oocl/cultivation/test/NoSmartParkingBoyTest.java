@@ -28,7 +28,7 @@ class NoSmartParkingBoyTest {
     }
 
     @Test
-    void should_get_exception_message_of_not_enough_position_when_park_given_car() {
+    void should_get_exception_message_of_not_enough_position_when_park_given_car() throws CustomException {
         // given
         Car car = new Car();
         List<ParkingLot> parkingLots = new ArrayList<>();
@@ -37,11 +37,11 @@ class NoSmartParkingBoyTest {
         }
         ParkingBoy noSmartParkingBoy = new NoSmartParkingBoy(parkingLots);
         // when
+        for (int i = 0; i < 10; i++) {
+            parkingLots.get(0).park(new Car());
+            parkingLots.get(1).park(new Car());
+        }
         Throwable exception = assertThrows(CustomException.class, () -> {
-            for (int i = 0; i < 10; i++) {
-                parkingLots.get(0).park(new Car());
-                parkingLots.get(1).park(new Car());
-            }
             noSmartParkingBoy.park(car);
         });
         // then

@@ -82,8 +82,8 @@ class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         CarTicket carTicket = parkingLot.park(car);
         // when
+        parkingLot.fetch(carTicket);
         Throwable exception = assertThrows(CustomException.class, () -> {
-            parkingLot.fetch(carTicket);
             parkingLot.fetch(carTicket);
         });
         // then
@@ -91,15 +91,15 @@ class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_park_given_parking_room_is_full() {
+    void should_return_null_when_park_given_parking_room_is_full() throws CustomException {
         // given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         // when
+        for (int i = 0; i < 10; i++) {
+            parkingLot.park(new Car());
+        }
         Throwable exception = assertThrows(CustomException.class, () -> {
-            for (int i = 0; i < 10; i++) {
-                parkingLot.park(new Car());
-            }
             parkingLot.park(car);
         });
         // then

@@ -66,15 +66,15 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_get_exception_message_of_not_enough_position_when_park_given_car() {
+    void should_get_exception_message_of_not_enough_position_when_park_given_car() throws CustomException {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         // when
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.park(new Car());
+        }
         Throwable exception = assertThrows(CustomException.class, () -> {
-            for (int i = 0; i < 10; i++) {
-                parkingBoy.park(new Car());
-            }
             parkingBoy.park(car);
         });
         // then
