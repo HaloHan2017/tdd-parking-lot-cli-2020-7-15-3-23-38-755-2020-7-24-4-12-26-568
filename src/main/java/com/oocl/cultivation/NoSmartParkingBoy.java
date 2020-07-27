@@ -12,7 +12,7 @@ public class NoSmartParkingBoy extends ParkingBoy {
     @Override
     public CarTicket park(Car car) throws CustomException {
         for (ParkingLot parkingLot : parkingLots) {
-            if(parkingLot.getParkingRoomRemindCapacity() > 0){
+            if (parkingLot.getParkingRoomRemindCapacity() > 0) {
                 return parkingLot.park(car);
             }
         }

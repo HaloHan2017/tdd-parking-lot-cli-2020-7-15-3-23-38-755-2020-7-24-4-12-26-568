@@ -22,7 +22,7 @@ public class ParkingBoy {
     }
 
     public Car fetch(CarTicket ticket) throws CustomException {
-        if(Objects.isNull(ticket)){
+        if (Objects.isNull(ticket)) {
             throw new CustomException("Please provide your parking ticket.");
         }
         return parkingLot.fetch(ticket);
